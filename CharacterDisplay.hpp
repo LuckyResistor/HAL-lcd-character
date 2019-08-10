@@ -1,7 +1,5 @@
 #pragma once
 //
-// The LCD character interface
-// ---------------------------------------------------------------------------
 // (c)2019 by Lucky Resistor. See LICENSE for details.
 //
 // This program is free software; you can redistribute it and/or modify
@@ -98,6 +96,10 @@ public: // Required functions for each implementation.
     
     /// Write a single character to the display.
     ///
+    /// This method does not require a special handling for line breaks of the display. The text is written
+    /// sequentially in the chosen direction to the display memory. You have to use `setCursor` to change
+    /// the line or cursor position in a logical way.
+    ///
     /// @param c The character to write.
     /// @return The status of the call.
     ///
@@ -105,12 +107,25 @@ public: // Required functions for each implementation.
     
     /// Write text to the display.
     ///
-    /// If the text reaches the end of the
+    /// This method does not require a special handling for line breaks of the display. The text is written
+    /// sequentially in the chosen direction to the display memory. You have to use `setCursor` to change
+    /// the line or cursor position in a logical way.
     ///
     /// @param text The text to write.
     /// @return The status of the call.
     ///
     virtual Status writeText(const String &text) = 0;
+
+    /// Write text to the display.
+    ///
+    /// This method does not require a special handling for line breaks of the display. The text is written
+    /// sequentially in the chosen direction to the display memory. You have to use `setCursor` to change
+    /// the line or cursor position in a logical way.
+    ///
+    /// @param text The text to write.
+    /// @return The status of the call.
+    ///
+    virtual Status writeText(const char *text) = 0;
 
 public: // Optional functions, see implementation if supported.
     /// Enable/disable the display.
